@@ -16,6 +16,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 
+import Advice from "./Advice";
+
 import {
   DataType,
   RecipeType,
@@ -34,8 +36,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     tags: {
       "& > *": {
-        marginRight: theme.spacing(1),
         marginBottom: theme.spacing(1),
+        marginRight: theme.spacing(1),
       },
     },
     card: {
@@ -58,13 +60,18 @@ export default function Recipes({
 }) {
   const classes = useStyles();
 
-  if (!data || !ingredients.length) {
+  if (!data) {
     return null;
   }
 
   if (loading) {
     return <LinearProgress color="secondary" variant="query" />;
   }
+
+  if (!ingredients.length) {
+    return <Advice />;
+  }
+
   return (
     <div className={classes.root}>
       {data.recipes.length ? (
