@@ -9,30 +9,34 @@ import Paginator from "./Paginator";
 import Recipes from "./Recipes";
 
 export default function RecipesView(): React.ReactElement {
-  const { data, loading, ingredients, setIngredients, setPage } = useRecipes();
+  const { data, loading, params, setParams } = useRecipes();
+  const { query } = params;
 
   const handleSubmit = (ingredient: string) => {
-    setIngredients([...ingredients, ingredient]);
+    const newIngredients = [query, ingredient].filter((i) => i).join(",");
+    setParams({ ...params, query: newIngredients });
   };
 
   const handleDelete = (ingredient?: string) => {
     if (!ingredient) {
-      setIngredients([]);
+      setParams({ page: 1, query: "" });
       return;
     }
-    const newIngredients = ingredients.filter((i) => i !== ingredient);
-    setIngredients(newIngredients);
+    const ingredientsToArray = query.split(",");
+    const newIngredients = ingredientsToArray.filter(i => i !== ingredient);
+
+    setParams({ page: 1, query: newIngredients.join(",") });
   };
 
   const handlePageChange = (value: number) => {
-    setPage(value);
-  }
+    setParams({ ...params, page: value });
+  };
 
   return (
     <Container maxWidth="lg">
       <SearchBar onSubmit={handleSubmit} />
-      <IngredientFilters onDelete={handleDelete} ingredients={ingredients} />
-      <Recipes data={data} loading={loading} ingredients={ingredients} />
+      <IngredientFilters onDelete={handleDelete} ingredients={query} />
+      <Recipes data={data} loading={loading} ingredients={query} />
       <Paginator data={data} loading={loading} onChange={handlePageChange} />
     </Container>
   );

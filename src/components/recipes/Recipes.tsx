@@ -55,7 +55,7 @@ export default function Recipes({
   loading,
 }: {
   data?: DataType;
-  ingredients: string[];
+  ingredients: string;
   loading: boolean;
 }) {
   const classes = useStyles();

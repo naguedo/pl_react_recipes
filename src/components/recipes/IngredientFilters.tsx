@@ -31,7 +31,7 @@ export default function IngredientFilters({
   return (
     <div className={classes.root}>
       <Chip onDelete={() => onDelete()} label="Tout supprimer" />
-      {ingredients.map((ingredient, index) => (
+      {ingredients.split(',').map((ingredient, index) => (
         <Chip
           onDelete={() => onDelete(ingredient)}
           key={`${index}-${ingredient}`}

@@ -30,7 +30,7 @@ export type RecipeType = {
 
 export type IngredientFiltersType = {
   onDelete: (ingredient?: string) => void;
-  ingredients: string[];
+  ingredients: string;
 };
 
 export type MetaType = {
@@ -45,3 +45,8 @@ export type DataType = {
   recipes: RecipeType[];
   meta: MetaType;
 };
+
+export type ParamsType = {
+  query: string;
+  page: number;
+}
