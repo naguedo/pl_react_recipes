@@ -18,7 +18,7 @@ export default function useRecipes() {
     };
 
     axios
-      .get("https://pl-recipes.herokuapp.com/api/v1/recipes", {
+      .get("https://pl-api-recipes.herokuapp.com/api/v1/recipes", {
         params: params,
       })
       .then((result) => {
