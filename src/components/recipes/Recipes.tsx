@@ -91,10 +91,16 @@ export default function Recipes({
           </Grid>
         </>
       ) : (
-        <Typography component="p" variant="h6">
-          Oups !... Aucune recette n'a été trouvée pour cette combinaison
-          d'aliments...
-        </Typography>
+        <>
+          <Typography component="p" variant="h6">
+            Oups !... Aucune recette n'a été trouvée pour cette combinaison
+            d'aliments...
+          </Typography>
+          <Typography>
+            Vous pouvez renseigner chaque ingrédient un à un, ou les séparer par
+            une virgule 😉
+          </Typography>
+        </>
       )}
     </div>
   );
